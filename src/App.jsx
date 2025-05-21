@@ -1,14 +1,19 @@
+import Header from "./components/Header";
+import Container from "./components/Container";
+import Card from "./components/Card";
 
-
-function App() {
-
+const App = () => {
   return (
     <>
-    
-      <h1>💸 Expense Tracker App (React)</h1>
-     
+      <Header />
+      <Container>
+        <Card>
+          <h2>Sample Card</h2>
+          <p>This is a sample card component.</p>
+        </Card>
+      </Container>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
