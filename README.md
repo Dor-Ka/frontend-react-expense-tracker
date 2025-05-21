@@ -1,12 +1,69 @@
-# React + Vite
+# 💸 Expense Tracker App (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple, clean and expandable Expense Tracker built with React and Styled Components. The project is being developed step by step, with clear milestones and good practices in mind.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
 
-## Expanding the ESLint configuration
+👉 [Soon on GitHub Pages / Vercel]
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📦 Stack
+
+- **React 18** (with Vite)
+- **Styled Components**
+- **ThemeProvider & GlobalStyle**
+- Coming soon: TypeScript, React Router, LocalStorage, Charts
+
+---
+
+## 📁 Project Structure
+
+src/
+├── components/
+├── features/
+│ ├── expenses/
+├── styles/
+│ ├── GlobalStyle.js
+│ └── theme.js
+├── utils/
+├── App.jsx
+├── main.jsx
+
+
+
+## 📌 Features – Roadmap
+
+This app will be built and improved step by step:
+
+| Version | Feature                                            | Status   |
+|---------|----------------------------------------------------|----------|
+| v0.1    | Project setup, Styled Components, GlobalStyle      | ✅ Done  |
+| v0.2    | Layout structure and reusable components           | ⏳ Soon  |
+| v0.3    | UI mockup with fake data (static state)            | ⏳ Soon  |
+| v0.4    | Add functionality: add/remove expenses             | ⏳ Soon  |
+| v0.5    | Persist expenses in LocalStorage                   | ⏳ Soon  |
+| v0.6    | Filter by category/date, basic chart               | ⏳ Soon  |
+| v0.7    | Polish UI, empty states, UX improvements           | ⏳ Soon  |
+| v0.8    | Responsive design                                  | ⏳ Soon  |
+| v0.9    | TypeScript refactor                                | ⏳ Planned |
+| v1.0    | Deploy, finalize README & cleanup                  | ⏳ Planned |
+
+---
+
+## 🛠️ How to run locally
+
+```bash
+git clone https://github.com/Dor-Ka/frontend-react-expense-tracker.git
+cd frontend-react-expense-tracker
+npm install
+npm run dev
+
+## 🧠 Author
+Created with ❤️ by Dorota Karpińska
+Part of a personal learning journey and frontend portfolio.
+
+## 📝 License
+MIT
