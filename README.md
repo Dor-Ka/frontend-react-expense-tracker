@@ -32,6 +32,16 @@ src/
 ├── App.jsx
 ├── main.jsx
 
+## 📦 Versions
+
+### v0.1 – Project Setup
+- Initialized project with Vite
+- Added Styled Components
+- Added basic theming and GlobalStyle
+
+### ✅ v0.2 – Layout and Base Components
+- Created basic layout components: `Header`, `Container`, `Card`
+- Integrated all components into `App.jsx`
 
 
 ## 📌 Features – Roadmap
