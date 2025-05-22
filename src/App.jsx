@@ -1,6 +1,6 @@
-import Header from "./components/Header";
-import Container from "./components/Container";
-import Card from "./components/Card";
+import Header from "./components/Header/Header";
+import Container from "./components/Container/Container";
+import Card from "./components/Card/Card";
 
 const App = () => {
   return (
