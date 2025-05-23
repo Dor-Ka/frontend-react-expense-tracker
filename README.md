@@ -6,7 +6,7 @@ A simple, clean and expandable Expense Tracker built with React and Styled Compo
 
 ## 🚀 Live Demo
 
-👉 [Soon on GitHub Pages / Vercel]
+👉 [Soon on GitHub Pages]
 
 ---
 
@@ -23,8 +23,15 @@ A simple, clean and expandable Expense Tracker built with React and Styled Compo
 
 src/
 ├── components/
+│ ├── Card/
+│ ├── Container/
+│ ├── Header/
+│ └── ExpenseItem/
 ├── features/
-│ ├── expenses/
+│ └── expenses/
+│ │ ├── ExpenseItem/
+│ │ ├── ExpenseList/
+│ │ └── dummyExpenses.js
 ├── styles/
 │ ├── GlobalStyle.js
 │ └── theme.js
@@ -43,21 +50,30 @@ src/
 - Created basic layout components: `Header`, `Container`, `Card`
 - Integrated all components into `App.jsx`
 
+### ✅ v0.3 – Expense List Layout & Dummy Data
+- Created `ExpenseList` component
+- Used dummy data for mock display
+- Styled list using `styled-components`
+
+### ✅ v0.4 – Split ExpenseItem
+- Extracted `ExpenseItem` as a separate component
+- Applied existing styles
+- Improved structure for better scalability
 
 ## 📌 Features – Roadmap
 
 This app will be built and improved step by step:
 
-| Version | Feature                                            | Status   |
-|---------|----------------------------------------------------|----------|
-| v0.1    | Project setup, Styled Components, GlobalStyle      | ✅ Done  |
-| v0.2    | Layout structure and reusable components           | ⏳ Soon  |
-| v0.3    | UI mockup with fake data (static state)            | ⏳ Soon  |
-| v0.4    | Add functionality: add/remove expenses             | ⏳ Soon  |
-| v0.5    | Persist expenses in LocalStorage                   | ⏳ Soon  |
-| v0.6    | Filter by category/date, basic chart               | ⏳ Soon  |
-| v0.7    | Polish UI, empty states, UX improvements           | ⏳ Soon  |
-| v0.8    | Responsive design                                  | ⏳ Soon  |
+| Version | Feature                                            | Status     |
+|---------|----------------------------------------------------|------------|
+| v0.1    | Project setup, Styled Components, GlobalStyle      | ✅ Done    |
+| v0.2    | Layout structure and reusable components           | ✅ Done    |
+| v0.3    | UI mockup with fake data (static state)            | ✅ Done    |
+| v0.4    | Extract ExpenseItem component                      | ✅ Done    |
+| v0.5    | Persist expenses in LocalStorage                   | ⏳ Soon    |
+| v0.6    | Filter by category/date, basic chart               | ⏳ Soon    |
+| v0.7    | Polish UI, empty states, UX improvements           | ⏳ Soon    |
+| v0.8    | Responsive design                                  | ⏳ Soon    |
 | v0.9    | TypeScript refactor                                | ⏳ Planned |
 | v1.0    | Deploy, finalize README & cleanup                  | ⏳ Planned |
 
