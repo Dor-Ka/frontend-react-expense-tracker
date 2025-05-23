@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Form, FormGroup, SubmitButton } from "./ExpenseFormStyles";
 
 const ExpenseForm = ({ onAddExpense }) => {
   const [title, setTitle] = useState("");
@@ -20,8 +21,8 @@ const ExpenseForm = ({ onAddExpense }) => {
   };
 
   return (
-    <form onSubmit={submitHandler}>
-      <div>
+    <Form onSubmit={submitHandler}>
+      <FormGroup>
         <label htmlFor="title">Title</label>
         <input
           id="title"
@@ -30,8 +31,9 @@ const ExpenseForm = ({ onAddExpense }) => {
           onChange={(e) => setTitle(e.target.value)}
           required
         />
-      </div>
-      <div>
+      </FormGroup>
+
+      <FormGroup>
         <label htmlFor="amount">Amount</label>
         <input
           id="amount"
@@ -42,8 +44,9 @@ const ExpenseForm = ({ onAddExpense }) => {
           step="0.01"
           required
         />
-      </div>
-      <div>
+      </FormGroup>
+
+      <FormGroup>
         <label htmlFor="date">Date</label>
         <input
           id="date"
@@ -52,9 +55,10 @@ const ExpenseForm = ({ onAddExpense }) => {
           onChange={(e) => setDate(e.target.value)}
           required
         />
-      </div>
-      <button type="submit">Add Expense</button>
-    </form>
+      </FormGroup>
+
+      <SubmitButton type="submit">Add Expense</SubmitButton>
+    </Form>
   );
 };
 
