@@ -1,13 +1,16 @@
-import { ListWrapper, ListItem } from "./ExpenseListStyles";
+import { ListWrapper } from "./ExpenseListStyles";
+import ExpenseItem from "../ExpenseItem/ExpenseItem";
 
 const ExpenseList = ({ expenses }) => {
   return (
     <ListWrapper>
       {expenses.map((expense) => (
-        <ListItem key={expense.id}>
-          <strong>{expense.title}</strong> — ${expense.amount}  
-          <span>{expense.date}</span>
-        </ListItem>
+        <ExpenseItem
+          key={expense.id}
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+        />
       ))}
     </ListWrapper>
   );
