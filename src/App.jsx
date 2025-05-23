@@ -1,8 +1,8 @@
 import Header from "./components/Header/Header";
 import Container from "./components/Container/Container";
 import Card from "./components/Card/Card";
-import ExpenseList from "./components/ExpenseList/ExpenseList";
-import { dummyExpenses } from "./data/dummyExpenses";
+import ExpenseList from "./features/expenses/ExpenseList/ExpenseList";
+import { dummyExpenses } from "./features/expenses/dummyExpenses";
 
 
 const App = () => {
