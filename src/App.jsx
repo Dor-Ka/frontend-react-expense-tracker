@@ -3,9 +3,14 @@ import Container from "./components/Container/Container";
 import Card from "./components/Card/Card";
 import ExpenseList from "./features/expenses/ExpenseList/ExpenseList";
 import { dummyExpenses } from "./features/expenses/dummyExpenses";
+import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
 
 
-const App = () => {
+function App() {
+  const handleAddExpense = (expense) => {
+    console.log("New expense added:", expense);
+  };
+
   return (
     <>
       <Header />
@@ -13,8 +18,7 @@ const App = () => {
 
       <Container>
         <Card>
-          <h2>Sample Card</h2>
-          <p>This is a sample card component.</p>
+          <ExpenseForm onAddExpense={handleAddExpense} />
         </Card>
       </Container>
     </>
