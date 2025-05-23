@@ -26,7 +26,7 @@ src/
 │ ├── Card/
 │ ├── Container/
 │ ├── Header/
-│ └── ExpenseItem/
+│ └── ExpenseForm/
 ├── features/
 │ └── expenses/
 │ │ ├── ExpenseItem/
@@ -60,6 +60,12 @@ src/
 - Applied existing styles
 - Improved structure for better scalability
 
+### ✅ v0.5 - Add ExpenseForm Component
+- Created `ExpenseForm` component with inputs for title, amount, and date
+- Added basic validation (required fields, amount > 0)
+- Integrated `ExpenseForm` in `App.jsx` with submission handler logging new expenses
+- Styled the form using styled-components for better layout and UX
+
 ## 📌 Features – Roadmap
 
 This app will be built and improved step by step:
@@ -69,13 +75,14 @@ This app will be built and improved step by step:
 | v0.1    | Project setup, Styled Components, GlobalStyle      | ✅ Done    |
 | v0.2    | Layout structure and reusable components           | ✅ Done    |
 | v0.3    | UI mockup with fake data (static state)            | ✅ Done    |
-| v0.4    | Extract ExpenseItem component                      | ✅ Done    |
-| v0.5    | Persist expenses in LocalStorage                   | ⏳ Soon    |
-| v0.6    | Filter by category/date, basic chart               | ⏳ Soon    |
-| v0.7    | Polish UI, empty states, UX improvements           | ⏳ Soon    |
-| v0.8    | Responsive design                                  | ⏳ Soon    |
-| v0.9    | TypeScript refactor                                | ⏳ Planned |
-| v1.0    | Deploy, finalize README & cleanup                  | ⏳ Planned |
+| v0.4    | Add ExpenseForm component with validation          | ✅ Done    |
+| v0.5    | Extract ExpenseItem component                      | ✅ Done    |
+| v0.6    | Persist expenses in LocalStorage                   | ⏳ Soon    |
+| v0.7    | Filter by category/date, basic chart               | ⏳ Soon    |
+| v0.8    | Polish UI, empty states, UX improvements           | ⏳ Soon    |
+| v0.9    | Responsive design                                  | ⏳ Soon    |
+| v1.0    | TypeScript refactor                                | ⏳ Planned |
+| v1.1    | Deploy, finalize README & cleanup                  | ⏳ Planned |
 
 ---
 
