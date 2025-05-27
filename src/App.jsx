@@ -1,28 +1,26 @@
+import { useExpenses } from "./features/expenses/useExpenses";
 import Header from "./components/Header/Header";
 import Container from "./components/Container/Container";
 import Card from "./components/Card/Card";
 import ExpenseList from "./features/expenses/ExpenseList/ExpenseList";
-import { dummyExpenses } from "./features/expenses/dummyExpenses";
 import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
 
-
 function App() {
-  const handleAddExpense = (expense) => {
-    console.log("New expense added:", expense);
-  };
+
+  const { expenses, addExpense } = useExpenses();
 
   return (
     <>
       <Header />
-      <ExpenseList expenses={dummyExpenses} />
+      <ExpenseList expenses={expenses} />
 
       <Container>
         <Card>
-          <ExpenseForm onAddExpense={handleAddExpense} />
+          <ExpenseForm onAddExpense={addExpense} />
         </Card>
       </Container>
     </>
   );
-};
+}
 
 export default App;
