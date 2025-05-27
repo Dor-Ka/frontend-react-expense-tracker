@@ -8,3 +8,9 @@ export const ListWrapper = styled.ul`
   flex-direction: column;
   gap: 1rem;
 `;
+
+export const Message = styled.p`
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray};
+  margin-top: 1rem;
+`;
