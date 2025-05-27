@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Form, FormGroup, SubmitButton } from "./ExpenseFormStyles";
 
 const getTodayDate = () => {
-  return new Date().toISOString().split('T')[0]; // format YYYY-MM-DD
+  return new Date().toISOString().split('T')[0];
 };
 
 const ExpenseForm = ({ onAddExpense }) => {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState(getTodayDate());
+  const titleInputRef = useRef(null);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -22,6 +23,8 @@ const ExpenseForm = ({ onAddExpense }) => {
     setTitle("");
     setAmount("");
     setDate(getTodayDate());
+
+    titleInputRef.current?.focus();
   };
 
   return (
@@ -29,6 +32,7 @@ const ExpenseForm = ({ onAddExpense }) => {
       <FormGroup>
         <label htmlFor="title">Title</label>
         <input
+          ref={titleInputRef}
           id="title"
           type="text"
           value={title}
