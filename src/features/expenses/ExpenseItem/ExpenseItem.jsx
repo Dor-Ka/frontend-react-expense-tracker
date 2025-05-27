@@ -8,7 +8,7 @@ const formatDate = (dateStr) => {
   return `${day}/${month}/${year}`;
 };
 
-const ExpenseItem = ({ title, amount, date }) => {
+const ExpenseItem = ({ id, title, amount, date, onDelete }) => {
   return (
     <ItemWrapper>
       <LeftColumn>
@@ -16,6 +16,7 @@ const ExpenseItem = ({ title, amount, date }) => {
         <span>{formatDate(date)}</span>
       </LeftColumn>
       <RightColumn>${amount.toFixed(2)}</RightColumn>
+      <button onClick={() => onDelete(id)}>🗑️</button>
     </ItemWrapper>
   );
 };
