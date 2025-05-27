@@ -66,6 +66,19 @@ src/
 - Integrated `ExpenseForm` in `App.jsx` with submission handler logging new expenses
 - Styled the form using styled-components for better layout and UX
 
+### ✅ v0.6 – Persist Expenses with LocalStorage
+- Created custom `useExpenses` hook
+- Persisted expenses in localStorage
+- Initialized state from localStorage on page load
+- Removed dummy data after successful implementation
+
+### ✅ v0.7 – Filter Expenses by Year
+- Added `ExpensesFilter` component with dropdown menu
+- Users can now filter expenses by year or select "All" to show all
+- Displayed a message if no expenses match selected year
+- Styled filter UI with styled-components
+
+
 ## 📌 Features – Roadmap
 
 This app will be built and improved step by step:
@@ -77,8 +90,8 @@ This app will be built and improved step by step:
 | v0.3    | UI mockup with fake data (static state)            | ✅ Done    |
 | v0.4    | Add ExpenseForm component with validation          | ✅ Done    |
 | v0.5    | Extract ExpenseItem component                      | ✅ Done    |
-| v0.6    | Persist expenses in LocalStorage                   | ⏳ Soon    |
-| v0.7    | Filter by category/date, basic chart               | ⏳ Soon    |
+| v0.6    | Persist expenses in LocalStorage                   | ✅ Done    |
+| v0.6    | Filter expenses by year                            | ✅ Done    |
 | v0.8    | Polish UI, empty states, UX improvements           | ⏳ Soon    |
 | v0.9    | Responsive design                                  | ⏳ Soon    |
 | v1.0    | TypeScript refactor                                | ⏳ Planned |
