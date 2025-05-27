@@ -1,7 +1,11 @@
-import { ListWrapper } from "./ExpenseListStyles";
+import { ListWrapper, Message } from "./ExpenseListStyles";
 import ExpenseItem from "../ExpenseItem/ExpenseItem";
 
 const ExpenseList = ({ expenses }) => {
+  if (expenses.length === 0) {
+    return <Message>No expenses found for this year.</Message>;
+  }
+
   return (
     <ListWrapper>
       {expenses.map((expense) => (
