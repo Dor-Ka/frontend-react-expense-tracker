@@ -31,7 +31,10 @@ src/
 │ └── expenses/
 │ │ ├── ExpenseItem/
 │ │ ├── ExpenseList/
-│ │ └── dummyExpenses.js
+│ │ ├── ExpensesFilter/
+│ │ │  ├── ExpensesFilter.jsx
+│ │ │  └── ExpensesFilterStyles.jsx
+│ │ └── useExpenses.js
 ├── styles/
 │ ├── GlobalStyle.js
 │ └── theme.js
@@ -83,6 +86,7 @@ src/
 - Set today's date as default in the expense form (YYYY-MM-DD)
 - Autofocus on Title input after submitting a new expense
 - Validations and inputs polished for better usability
+- Sort expenses by date in descending order (newest first) in the list 
 
 ## 📌 Features – Roadmap
 
