@@ -15,6 +15,7 @@ const ExpenseForm = ({ onAddExpense }) => {
     e.preventDefault();
 
     const expenseData = {
+      id: crypto.randomUUID(),
       title,
       amount: parseFloat(amount),
       date,

@@ -9,7 +9,7 @@ import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
 import ExpensesFilter from "./features/expenses/ExpensesFilter/ExpensesFilter";
 
 function App() {
-  const { expenses, addExpense } = useExpenses();
+  const { expenses, addExpense, deleteExpense } = useExpenses();
   const [selectedYear, setSelectedYear] = useState("2025");
 
   const filteredExpenses = expenses.filter((expense) => {
@@ -30,7 +30,7 @@ function App() {
           onChangeYear={setSelectedYear}
         />
 
-        <ExpenseList expenses={filteredExpenses} />
+        <ExpenseList expenses={filteredExpenses} onDelete={deleteExpense}/>
       </Container>
     </>
   );

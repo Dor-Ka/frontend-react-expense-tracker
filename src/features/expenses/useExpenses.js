@@ -16,5 +16,9 @@ export const useExpenses = () => {
     setExpenses((prev) => [expense, ...prev]);
   };
 
-  return { expenses, addExpense };
+  const deleteExpense = (id) => {
+    setExpenses((prev) => prev.filter((expense) => expense.id !== id));
+  };
+
+  return { expenses, addExpense, deleteExpense };
 };
