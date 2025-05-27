@@ -1,18 +1,13 @@
-import { useState } from "react";
-
+import { useExpenses } from "./features/expenses/useExpenses";
 import Header from "./components/Header/Header";
 import Container from "./components/Container/Container";
 import Card from "./components/Card/Card";
 import ExpenseList from "./features/expenses/ExpenseList/ExpenseList";
 import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
-import { dummyExpenses } from "./features/expenses/dummyExpenses";
 
 function App() {
-  const [expenses, setExpenses] = useState(dummyExpenses);
 
-  const handleAddExpense = (newExpense) => {
-    setExpenses((prevExpenses) => [newExpense, ...prevExpenses]);
-  };
+  const { expenses, addExpense } = useExpenses();
 
   return (
     <>
@@ -21,7 +16,7 @@ function App() {
 
       <Container>
         <Card>
-          <ExpenseForm onAddExpense={handleAddExpense} />
+          <ExpenseForm onAddExpense={addExpense} />
         </Card>
       </Container>
     </>
