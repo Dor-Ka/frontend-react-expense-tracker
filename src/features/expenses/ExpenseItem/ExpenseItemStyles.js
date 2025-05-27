@@ -10,9 +10,25 @@ export const ItemWrapper = styled.li`
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+`;
+
+export const LeftColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  strong {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
 
   span {
     font-size: 0.875rem;
     color: #666;
   }
+`;
+
+export const RightColumn = styled.div`
+  font-weight: 600;
+  font-size: 1rem;
+  white-space: nowrap;
 `;
