@@ -91,7 +91,7 @@ This app will be built and improved step by step:
 | v0.4    | Add ExpenseForm component with validation          | ✅ Done    |
 | v0.5    | Extract ExpenseItem component                      | ✅ Done    |
 | v0.6    | Persist expenses in LocalStorage                   | ✅ Done    |
-| v0.6    | Filter expenses by year                            | ✅ Done    |
+| v0.7    | Filter expenses by year                            | ✅ Done    |
 | v0.8    | Polish UI, empty states, UX improvements           | ⏳ Soon    |
 | v0.9    | Responsive design                                  | ⏳ Soon    |
 | v1.0    | TypeScript refactor                                | ⏳ Planned |
