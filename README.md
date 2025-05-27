@@ -78,6 +78,11 @@ src/
 - Displayed a message if no expenses match selected year
 - Styled filter UI with styled-components
 
+### ✅ v0.8 – Polish UI & UX Improvements
+- Improved empty state: clear message when no expenses are found
+- Set today's date as default in the expense form (YYYY-MM-DD)
+- Autofocus on Title input after submitting a new expense
+- Validations and inputs polished for better usability
 
 ## 📌 Features – Roadmap
 
@@ -92,7 +97,7 @@ This app will be built and improved step by step:
 | v0.5    | Extract ExpenseItem component                      | ✅ Done    |
 | v0.6    | Persist expenses in LocalStorage                   | ✅ Done    |
 | v0.7    | Filter expenses by year                            | ✅ Done    |
-| v0.8    | Polish UI, empty states, UX improvements           | ⏳ Soon    |
+| v0.8    | Polish UI, empty states, UX improvements           | ✅ Done    |
 | v0.9    | Responsive design                                  | ⏳ Soon    |
 | v1.0    | TypeScript refactor                                | ⏳ Planned |
 | v1.1    | Deploy, finalize README & cleanup                  | ⏳ Planned |
