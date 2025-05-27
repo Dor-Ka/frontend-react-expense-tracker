@@ -12,13 +12,9 @@ function App() {
   const { expenses, addExpense } = useExpenses();
   const [selectedYear, setSelectedYear] = useState("2025");
 
-  const handleYearChange = (year) => {
-    setSelectedYear(year);
-  };
-
   const filteredExpenses = expenses.filter((expense) => {
-    const expenseYear = new Date(expense.date).getFullYear().toString();
-    return expenseYear === selectedYear;
+    const year = new Date(expense.date).getFullYear().toString();
+    return selectedYear === "All" || year === selectedYear;
   });
 
   return (
@@ -29,7 +25,10 @@ function App() {
           <ExpenseForm onAddExpense={addExpense} />
         </Card>
 
-        <ExpensesFilter selectedYear={selectedYear} onChangeYear={handleYearChange} />
+        <ExpensesFilter
+          selectedYear={selectedYear}
+          onChangeYear={setSelectedYear}
+        />
 
         <ExpenseList expenses={filteredExpenses} />
       </Container>
