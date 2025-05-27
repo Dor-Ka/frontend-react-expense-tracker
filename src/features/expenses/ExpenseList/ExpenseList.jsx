@@ -6,9 +6,11 @@ const ExpenseList = ({ expenses }) => {
     return <Message>No expenses found for this year.</Message>;
   }
 
+  const sortedExpenses = [...expenses].sort((a, b) => new Date(b.date) - new Date(a.date));
+
   return (
     <ListWrapper>
-      {expenses.map((expense) => (
+      {sortedExpenses.map((expense) => (
         <ExpenseItem
           key={expense.id}
           title={expense.title}
