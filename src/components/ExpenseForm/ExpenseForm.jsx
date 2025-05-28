@@ -5,10 +5,19 @@ const getTodayDate = () => {
   return new Date().toISOString().split('T')[0];
 };
 
+const categoryOptions = [
+  "Food",
+  "Transport",
+  "Entertainment",
+  "Bills",
+  "Other",
+];
+
 const ExpenseForm = ({ onAddExpense }) => {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState(getTodayDate());
+  const [category, setCategory] = useState("Other");
   const titleInputRef = useRef(null);
 
   const submitHandler = (e) => {
