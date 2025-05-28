@@ -17,6 +17,7 @@ const ExpenseList = ({ expenses, onDelete }) => {
           title={expense.title}
           amount={expense.amount}
           date={expense.date}
+          category={expense.category} 
           onDelete={onDelete}
         />
       ))}
