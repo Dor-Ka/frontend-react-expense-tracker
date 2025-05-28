@@ -75,6 +75,20 @@ const ExpenseForm = ({ onAddExpense }) => {
         />
       </FormGroup>
 
+      <FormGroup>
+        <label htmlFor="category">Category</label>
+        <select
+          id="category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          required
+        >
+          {categoryOptions.map((option) => (
+            <option key={option} value={option}>{option}</option>
+          ))}
+        </select>
+      </FormGroup>
+
       <SubmitButton type="submit">Add Expense</SubmitButton>
     </Form>
   );
