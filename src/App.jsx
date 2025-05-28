@@ -6,8 +6,8 @@ import Container from "./components/Container/Container";
 import Card from "./components/Card/Card";
 import ExpenseList from "./features/expenses/ExpenseList/ExpenseList";
 import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
-import ExpensesFilter from "./features/expenses/ExpensesFilter/ExpensesFilter";
-import CategoryFilter from "./features/expenses/CategoryFilter/CategoryFilter";
+import ExpensesFilters from "./features/expenses/ExpensesFilters/ExpensesFilters";
+
 
 function App() {
   const { expenses, addExpense, deleteExpense } = useExpenses();
@@ -18,8 +18,12 @@ function App() {
 
   const filteredExpenses = expenses.filter((expense) => {
     const year = new Date(expense.date).getFullYear().toString();
-    return selectedYear === "All" || year === selectedYear;
+    const matchesYear = selectedYear === "All" || year === selectedYear;
+    const matchesCategory = selectedCategory === "all" || expense.category === selectedCategory;
+  
+    return matchesYear && matchesCategory;
   });
+  
 
   return (
     <>
@@ -29,16 +33,13 @@ function App() {
           <ExpenseForm onAddExpense={addExpense} />
         </Card>
 
-        <ExpensesFilter
+        <ExpensesFilters
           selectedYear={selectedYear}
           onChangeYear={setSelectedYear}
-        />
-
-        <CategoryFilter
           selectedCategory={selectedCategory}
           onChangeCategory={setSelectedCategory}
           categories={categories}
-        />
+          />
 
         <ExpenseList expenses={filteredExpenses} onDelete={deleteExpense} />
       </Container>
