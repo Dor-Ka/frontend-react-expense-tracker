@@ -32,3 +32,17 @@ export const RightColumn = styled.div`
   font-size: 1rem;
   white-space: nowrap;
 `;
+
+export const CategoryTag = styled.em`
+  font-style: normal;         
+  background-color: ${({ theme }) => theme.colors.primary}20; 
+  color: ${({ theme }) => theme.colors.primary};
+  padding: 2px 8px;
+  border-radius: 12px;
+  user-select: none;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-top: 4px;            
+  text-transform: capitalize;  
+`;    
