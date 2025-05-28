@@ -14,7 +14,7 @@ const ExpenseItem = ({ id, title, amount, date, category, onDelete }) => {
       <LeftColumn>
         <strong>{title}</strong>
         <span>{formatDate(date)}</span>
-        <em>{category}</em>
+        <div>Category: <em>{category}</em></div>
       </LeftColumn>
       <RightColumn>${amount.toFixed(2)}</RightColumn>
       <button onClick={() => onDelete(id)}>🗑️</button>
