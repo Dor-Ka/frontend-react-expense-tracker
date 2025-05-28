@@ -5,10 +5,19 @@ const getTodayDate = () => {
   return new Date().toISOString().split('T')[0];
 };
 
+const categoryOptions = [
+  "Food",
+  "Transport",
+  "Entertainment",
+  "Bills",
+  "Other",
+];
+
 const ExpenseForm = ({ onAddExpense }) => {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState(getTodayDate());
+  const [category, setCategory] = useState("Other");
   const titleInputRef = useRef(null);
 
   const submitHandler = (e) => {
@@ -19,10 +28,14 @@ const ExpenseForm = ({ onAddExpense }) => {
       title,
       amount: parseFloat(amount),
       date,
+      category,
     };
+
     onAddExpense(expenseData);
+    
     setTitle("");
     setAmount("");
+    setCategory("Other");
     setDate(getTodayDate());
 
     titleInputRef.current?.focus();
@@ -64,6 +77,20 @@ const ExpenseForm = ({ onAddExpense }) => {
           onChange={(e) => setDate(e.target.value)}
           required
         />
+      </FormGroup>
+
+      <FormGroup>
+        <label htmlFor="category">Category</label>
+        <select
+          id="category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          required
+        >
+          {categoryOptions.map((option) => (
+            <option key={option} value={option}>{option}</option>
+          ))}
+        </select>
       </FormGroup>
 
       <SubmitButton type="submit">Add Expense</SubmitButton>

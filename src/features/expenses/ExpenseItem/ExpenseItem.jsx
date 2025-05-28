@@ -1,4 +1,4 @@
-import { ItemWrapper, LeftColumn, RightColumn } from "./ExpenseItemStyles";
+import { ItemWrapper, LeftColumn, RightColumn, CategoryTag } from "./ExpenseItemStyles";
 
 const formatDate = (dateStr) => {
   const dateObj = new Date(dateStr);
@@ -8,12 +8,13 @@ const formatDate = (dateStr) => {
   return `${day}/${month}/${year}`;
 };
 
-const ExpenseItem = ({ id, title, amount, date, onDelete }) => {
+const ExpenseItem = ({ id, title, amount, date, category, onDelete }) => {
   return (
     <ItemWrapper>
       <LeftColumn>
         <strong>{title}</strong>
         <span>{formatDate(date)}</span>
+        <CategoryTag>{category}</CategoryTag>
       </LeftColumn>
       <RightColumn>${amount.toFixed(2)}</RightColumn>
       <button onClick={() => onDelete(id)}>🗑️</button>
