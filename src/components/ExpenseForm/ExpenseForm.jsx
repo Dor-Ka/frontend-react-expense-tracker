@@ -28,10 +28,14 @@ const ExpenseForm = ({ onAddExpense }) => {
       title,
       amount: parseFloat(amount),
       date,
+      category,
     };
+
     onAddExpense(expenseData);
+    
     setTitle("");
     setAmount("");
+    setCategory("Other");
     setDate(getTodayDate());
 
     titleInputRef.current?.focus();
