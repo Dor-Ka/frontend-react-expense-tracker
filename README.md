@@ -15,32 +15,34 @@ A simple, clean and expandable Expense Tracker built with React and Styled Compo
 - **React 18** (with Vite)
 - **Styled Components**
 - **ThemeProvider & GlobalStyle**
+- Persisting data with **LocalStorage**
 - Coming soon: TypeScript, React Router, LocalStorage, Charts
 
 ---
 
-## 📁 Project Structure
+<!-- ## 📁 Project Structure
 
 src/
 ├── components/
-│ ├── Card/
-│ ├── Container/
-│ ├── Header/
-│ └── ExpenseForm/
+│   ├── Card/
+│   ├── Container/
+│   ├── Header/
+│   └── ExpenseForm/
 ├── features/
-│ └── expenses/
-│ │ ├── ExpenseItem/
-│ │ ├── ExpenseList/
-│ │ ├── ExpensesFilter/
-│ │ │  ├── ExpensesFilter.jsx
-│ │ │  └── ExpensesFilterStyles.jsx
-│ │ └── useExpenses.js
+│   └── expenses/
+│       ├── ExpenseItem/
+│       ├── ExpenseList/
+│       ├── ExpensesFilter/
+│       │   ├── ExpensesFilter.jsx
+│       │   └── ExpensesFilterStyles.jsx
+│       └── useExpenses.js
 ├── styles/
-│ ├── GlobalStyle.js
-│ └── theme.js
+│   ├── GlobalStyle.js
+│   └── theme.js
 ├── utils/
 ├── App.jsx
-├── main.jsx
+├── main.jsx -->
+
 
 ## 📦 Versions
 
@@ -88,25 +90,16 @@ src/
 - Validations and inputs polished for better usability
 - Sort expenses by date in descending order (newest first) in the list 
 
-## 📌 Features – Roadmap
+### ✅ v0.9 – Responsive Design and UI Enhancements
+- Improved responsiveness for filters and expense items on small screens
+- Unified button styles with reusable styled components
+- Added "Load Sample Data" button with styling
 
-This app will be built and improved step by step:
-
-| Version | Feature                                            | Status     |
-|---------|----------------------------------------------------|------------|
-| v0.1    | Project setup, Styled Components, GlobalStyle      | ✅ Done    |
-| v0.2    | Layout structure and reusable components           | ✅ Done    |
-| v0.3    | UI mockup with fake data (static state)            | ✅ Done    |
-| v0.4    | Add ExpenseForm component with validation          | ✅ Done    |
-| v0.5    | Extract ExpenseItem component                      | ✅ Done    |
-| v0.6    | Persist expenses in LocalStorage                   | ✅ Done    |
-| v0.7    | Filter expenses by year                            | ✅ Done    |
-| v0.8    | Polish UI, empty states, UX improvements           | ✅ Done    |
-| v0.9    | Responsive design                                  | ⏳ Soon    |
-| v1.0    | TypeScript refactor                                | ⏳ Planned |
-| v1.1    | Deploy, finalize README & cleanup                  | ⏳ Planned |
-
----
+### ✅ v1.0 – Expense Editing Functionality (Current)
+- Added edit button to each expense item
+- Implemented edit mode in ExpenseForm with save and cancel options
+- Added updateExpense function to update expenses and persist changes in LocalStorage
+- Improved overall UX for editing and managing expenses
 
 ## 🛠️ How to run locally
 

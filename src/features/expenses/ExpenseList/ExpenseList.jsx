@@ -1,7 +1,7 @@
 import { ListWrapper, Message } from "./ExpenseListStyles";
 import ExpenseItem from "../ExpenseItem/ExpenseItem";
 
-const ExpenseList = ({ expenses, onDelete, selectedYear, selectedCategory }) => {
+const ExpenseList = ({ expenses, onEdit, onDelete, selectedYear, selectedCategory }) => {
 
   if (expenses.length === 0) {
     const yearText = selectedYear === "All" ? "" : ` in ${selectedYear}`;
@@ -26,6 +26,7 @@ const ExpenseList = ({ expenses, onDelete, selectedYear, selectedCategory }) => 
           amount={expense.amount}
           date={expense.date}
           category={expense.category} 
+          onEdit={onEdit} 
           onDelete={onDelete}
         />
       ))}

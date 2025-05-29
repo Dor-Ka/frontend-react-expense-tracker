@@ -1,8 +1,9 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Form, FormGroup } from "./ExpenseFormStyles";
 import { SubmitButton } from "../StyledButton";
+
 const getTodayDate = () => {
-  return new Date().toISOString().split('T')[0];
+  return new Date().toISOString().split("T")[0];
 };
 
 const categoryOptions = [
@@ -13,32 +14,52 @@ const categoryOptions = [
   "Other",
 ];
 
-const ExpenseForm = ({ onAddExpense }) => {
+const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit }) => {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState(getTodayDate());
   const [category, setCategory] = useState("Other");
   const titleInputRef = useRef(null);
 
+  useEffect(() => {
+    if (expenseToEdit) {
+      setTitle(expenseToEdit.title);
+      setAmount(expenseToEdit.amount.toString());
+      setDate(expenseToEdit.date);
+      setCategory(expenseToEdit.category);
+      titleInputRef.current?.focus();
+    } else {
+      setTitle("");
+      setAmount("");
+      setDate(getTodayDate());
+      setCategory("Other");
+    }
+  }, [expenseToEdit]);
+
   const submitHandler = (e) => {
     e.preventDefault();
 
     const expenseData = {
-      id: crypto.randomUUID(),
+      id: expenseToEdit ? expenseToEdit.id : crypto.randomUUID(),
       title,
       amount: parseFloat(amount),
       date,
       category,
     };
 
-    onAddExpense(expenseData);
-    
-    setTitle("");
-    setAmount("");
-    setCategory("Other");
-    setDate(getTodayDate());
+    if (expenseToEdit) {
+      onSaveExpense(expenseData);
+    } else {
+      onAddExpense(expenseData);
+    }
 
-    titleInputRef.current?.focus();
+    if (!expenseToEdit) {
+      setTitle("");
+      setAmount("");
+      setCategory("Other");
+      setDate(getTodayDate());
+      titleInputRef.current?.focus();
+    }
   };
 
   return (
@@ -88,12 +109,22 @@ const ExpenseForm = ({ onAddExpense }) => {
           required
         >
           {categoryOptions.map((option) => (
-            <option key={option} value={option}>{option}</option>
+            <option key={option} value={option}>
+              {option}
+            </option>
           ))}
         </select>
       </FormGroup>
 
-      <SubmitButton type="submit">Add Expense</SubmitButton>
+      <SubmitButton type="submit">
+        {expenseToEdit ? "Save Changes" : "Add Expense"}
+      </SubmitButton>
+
+      {expenseToEdit && (
+        <SubmitButton type="button" onClick={onCancelEdit} style={{ marginLeft: "10px", backgroundColor: "#ccc", color: "#000" }}>
+          Cancel
+        </SubmitButton>
+      )}
     </Form>
   );
 };
