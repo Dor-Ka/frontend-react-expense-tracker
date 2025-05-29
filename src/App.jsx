@@ -8,6 +8,7 @@ import ExpenseList from "./features/expenses/ExpenseList/ExpenseList";
 import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
 import ExpensesFilters from "./features/expenses/ExpensesFilters/ExpensesFilters";
 import sampleExpenses from "./utils/sampleExpenses";
+import { SampleButton } from "./components/StyledButton";
 
 function App() {
   const { expenses, addExpense, deleteExpense } = useExpenses();
@@ -36,7 +37,7 @@ function App() {
           <ExpenseForm onAddExpense={addExpense} />
         </Card>
 
-        <button onClick={loadSampleExpenses}>Load Sample Expenses</button>
+        <SampleButton onClick={loadSampleExpenses}>Load Sample Expenses</SampleButton>
 
         <ExpensesFilters
           expenses={expenses}
