@@ -34,6 +34,7 @@ function App() {
         </Card>
 
         <ExpensesFilters
+          expenses={expenses}
           selectedYear={selectedYear}
           onChangeYear={setSelectedYear}
           selectedCategory={selectedCategory}

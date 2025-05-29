@@ -1,7 +1,8 @@
 import { FilterContainer, SelectWrapper, Select, Label } from "./ExpensesFilterStyles";
 
-const ExpensesFilters = ({ selectedYear, onChangeYear, selectedCategory, onChangeCategory, categories }) => {
-  const years = ["All", "2025", "2024", "2023", "2022"];
+const ExpensesFilters = ({ expenses, selectedYear, onChangeYear, selectedCategory, onChangeCategory, categories }) => {
+  const years = ["All", ...new Set(expenses.map(exp => new Date(exp.date).getFullYear().toString()))];
+
 
   return (
     <FilterContainer>
