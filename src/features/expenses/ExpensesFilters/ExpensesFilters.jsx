@@ -18,9 +18,14 @@ const ExpensesFilters = ({ selectedYear, onChangeYear, selectedCategory, onChang
         <Label htmlFor="categoryFilter">Filter by category:</Label>
         <Select id="categoryFilter" value={selectedCategory} onChange={(e) => onChangeCategory(e.target.value)}>
           <option value="all">All</option>
-          {categories.map((cat) => (
-            <option key={cat} value={cat}>{cat}</option>
-          ))}
+          {categories
+            .filter((cat) => cat && cat.trim() !== "")
+            .map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+
         </Select>
       </SelectWrapper>
     </FilterContainer>
