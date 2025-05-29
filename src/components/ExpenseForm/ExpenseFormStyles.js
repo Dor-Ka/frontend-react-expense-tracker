@@ -16,7 +16,8 @@ export const FormGroup = styled.div`
     color: ${({ theme }) => theme.colors.text};
   }
 
-  input {
+  input,
+  select {
     padding: 0.5rem;
     font-size: 1rem;
     border-radius: 4px;
