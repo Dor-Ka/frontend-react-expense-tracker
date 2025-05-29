@@ -10,7 +10,7 @@ const formatDate = (dateStr) => {
   return `${day}/${month}/${year}`;
 };
 
-const ExpenseItem = ({ id, title, amount, date, category, onDelete }) => {
+const ExpenseItem = ({ id, title, amount, date, category, onDelete, onEdit }) => {
   return (
     <ItemWrapper>
       <LeftColumn>
@@ -19,10 +19,10 @@ const ExpenseItem = ({ id, title, amount, date, category, onDelete }) => {
         <CategoryTag>{category}</CategoryTag>
       </LeftColumn>
       <RightColumn>${amount.toFixed(2)}</RightColumn>
-      <IconButton onClick={() => onEdit(expense.id)} aria-label="Edit expense">
+      <IconButton onClick={() => onEdit(id)} aria-label="Edit expense">
         <EditIcon />  
       </IconButton>
-      <IconButton onClick={() => onDelete(id)}>
+      <IconButton onClick={() => onDelete(id)} aria-label="Delete expense">
         <Trash2 />
       </IconButton>
     </ItemWrapper>

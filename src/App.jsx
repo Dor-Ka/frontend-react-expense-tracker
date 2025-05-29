@@ -11,9 +11,10 @@ import sampleExpenses from "./utils/sampleExpenses";
 import { SampleButton } from "./components/StyledButton";
 
 function App() {
-  const { expenses, addExpense, deleteExpense } = useExpenses();
+  const { expenses, addExpense, deleteExpense, updateExpense } = useExpenses();
   const [selectedYear, setSelectedYear] = useState("All");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [editingExpense, setEditingExpense] = useState(null);
 
   const categories = [...new Set(expenses.map(exp => exp.category))];
 
@@ -28,13 +29,29 @@ function App() {
     sampleExpenses.forEach((expense) => addExpense({ ...expense, id: crypto.randomUUID() }));
   };
 
+  const handleEdit = (id) => {
+    const expense = expenses.find(exp => exp.id === id);
+    if (expense) {
+      setEditingExpense(expense);
+    }
+  };
+
+  const handleSave = (updatedExpense) => {
+    updateExpense(updatedExpense);
+    setEditingExpense(null);
+  };
 
   return (
     <>
       <Header />
       <Container>
         <Card>
-          <ExpenseForm onAddExpense={addExpense} />
+          <ExpenseForm
+            onAddExpense={addExpense}
+            expenseToEdit={editingExpense}
+            onSaveExpense={handleSave}
+            onCancelEdit={() => setEditingExpense(null)}
+          />
         </Card>
 
         <SampleButton onClick={loadSampleExpenses}>Load Sample Expenses</SampleButton>
@@ -51,6 +68,7 @@ function App() {
         <ExpenseList
           expenses={filteredExpenses}
           onDelete={deleteExpense}
+          onEdit={handleEdit} 
           selectedYear={selectedYear}
           selectedCategory={selectedCategory}
         />
