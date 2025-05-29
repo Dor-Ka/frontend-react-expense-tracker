@@ -10,15 +10,22 @@ export const ItemWrapper = styled.li`
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  gap: 1rem;
+  min-width: 0;
 `;
 
 export const LeftColumn = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-width: 0;
 
   strong {
     font-weight: 600;
     margin-bottom: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   span {
@@ -31,6 +38,7 @@ export const RightColumn = styled.div`
   font-weight: 600;
   font-size: 1rem;
   white-space: nowrap;
+  
 `;
 
 export const CategoryTag = styled.em`
