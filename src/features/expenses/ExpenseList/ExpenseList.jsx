@@ -1,7 +1,7 @@
 import { ListWrapper, Message } from "./ExpenseListStyles";
 import ExpenseItem from "../ExpenseItem/ExpenseItem";
 
-const ExpenseList = ({ expenses, onDelete }) => {
+const ExpenseList = ({ expenses, onDelete, selectedYear, selectedCategory }) => {
 
   if (expenses.length === 0) {
     const yearText = selectedYear === "All" ? "" : ` in ${selectedYear}`;
