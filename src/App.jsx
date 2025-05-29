@@ -20,10 +20,10 @@ function App() {
     const year = new Date(expense.date).getFullYear().toString();
     const matchesYear = selectedYear === "All" || year === selectedYear;
     const matchesCategory = selectedCategory === "all" || expense.category === selectedCategory;
-  
+
     return matchesYear && matchesCategory;
   });
-  
+
 
   return (
     <>
@@ -39,9 +39,14 @@ function App() {
           selectedCategory={selectedCategory}
           onChangeCategory={setSelectedCategory}
           categories={categories}
-          />
+        />
 
-        <ExpenseList expenses={filteredExpenses} onDelete={deleteExpense} />
+        <ExpenseList
+          expenses={filteredExpenses}
+          onDelete={deleteExpense}
+          selectedYear={selectedYear}
+          selectedCategory={selectedCategory}
+        />
       </Container>
     </>
   );
