@@ -1,23 +1,26 @@
 import styled from "styled-components";
 
-export const SampleButton = styled.button`
+const BaseButton = styled.button`
   background-color: ${({ theme }) => theme.colors.primary};
   color: white;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-
+  transition: background-color 0.25s ease, transform 0.1s ease;
+  
   &:hover {
-    background-color: ${({ theme }) => theme.colors.primaryDark || "#005fa3"};
+    background-color: ${({ theme }) => theme.colors.primaryDark};
   }
 
   &:active {
     transform: scale(0.98);
   }
+`;
+
+export const SampleButton = styled(BaseButton)`
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
 
   @media (max-width: 500px) {
     font-size: 0.9rem;
@@ -25,20 +28,9 @@ export const SampleButton = styled.button`
   }
 `;
 
-export const SubmitButton = styled.button`
+export const SubmitButton = styled(BaseButton)`
   padding: 0.75rem;
   font-size: 1rem;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary};
-  }
 `;
 
 export const IconButton = styled.button`
@@ -51,7 +43,8 @@ export const IconButton = styled.button`
   transition: color 0.2s;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.danger};
+    color: ${({ theme }) => theme.colors.danger}; 
+    border-radius: 6px;
   }
 
   &:focus {
