@@ -7,7 +7,8 @@ import Card from "./components/Card/Card";
 import ExpenseList from "./features/expenses/ExpenseList/ExpenseList";
 import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
 import ExpensesFilters from "./features/expenses/ExpensesFilters/ExpensesFilters";
-
+import sampleExpenses from "./utils/sampleExpenses";
+import { SampleButton } from "./components/StyledButton";
 
 function App() {
   const { expenses, addExpense, deleteExpense } = useExpenses();
@@ -20,9 +21,12 @@ function App() {
     const year = new Date(expense.date).getFullYear().toString();
     const matchesYear = selectedYear === "All" || year === selectedYear;
     const matchesCategory = selectedCategory === "all" || expense.category === selectedCategory;
-
     return matchesYear && matchesCategory;
   });
+
+  const loadSampleExpenses = () => {
+    sampleExpenses.forEach((expense) => addExpense({ ...expense, id: crypto.randomUUID() }));
+  };
 
 
   return (
@@ -32,6 +36,8 @@ function App() {
         <Card>
           <ExpenseForm onAddExpense={addExpense} />
         </Card>
+
+        <SampleButton onClick={loadSampleExpenses}>Load Sample Expenses</SampleButton>
 
         <ExpensesFilters
           expenses={expenses}

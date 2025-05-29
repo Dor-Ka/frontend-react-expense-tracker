@@ -31,19 +31,3 @@ export const FormGroup = styled.div`
     }
   }
 `;
-
-export const SubmitButton = styled.button`
-  padding: 0.75rem;
-  font-size: 1rem;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary};
-  }
-`;
