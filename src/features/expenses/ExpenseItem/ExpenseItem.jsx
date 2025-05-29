@@ -1,6 +1,6 @@
 import { ItemWrapper, LeftColumn, RightColumn, CategoryTag } from "./ExpenseItemStyles";
 import { IconButton } from "../../../components/StyledButton";
-import { Trash2 } from "lucide-react";
+import { Trash2, EditIcon } from "lucide-react";
 
 const formatDate = (dateStr) => {
   const dateObj = new Date(dateStr);
@@ -19,6 +19,9 @@ const ExpenseItem = ({ id, title, amount, date, category, onDelete }) => {
         <CategoryTag>{category}</CategoryTag>
       </LeftColumn>
       <RightColumn>${amount.toFixed(2)}</RightColumn>
+      <IconButton onClick={() => onEdit(expense.id)} aria-label="Edit expense">
+        <EditIcon />  
+      </IconButton>
       <IconButton onClick={() => onDelete(id)}>
         <Trash2 />
       </IconButton>
