@@ -1,3 +1,4 @@
+import { IconButton } from "../../../components/StyledButton";
 import { ItemWrapper, LeftColumn, RightColumn, CategoryTag } from "./ExpenseItemStyles";
 
 const formatDate = (dateStr) => {
@@ -17,7 +18,7 @@ const ExpenseItem = ({ id, title, amount, date, category, onDelete }) => {
         <CategoryTag>{category}</CategoryTag>
       </LeftColumn>
       <RightColumn>${amount.toFixed(2)}</RightColumn>
-      <button onClick={() => onDelete(id)}>🗑️</button>
+      <IconButton onClick={() => onDelete(id)}>🗑️</IconButton>
     </ItemWrapper>
   );
 };

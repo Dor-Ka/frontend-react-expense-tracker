@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import { Form, FormGroup, SubmitButton } from "./ExpenseFormStyles";
-
+import { Form, FormGroup } from "./ExpenseFormStyles";
+import { SubmitButton } from "../StyledButton";
 const getTodayDate = () => {
   return new Date().toISOString().split('T')[0];
 };
