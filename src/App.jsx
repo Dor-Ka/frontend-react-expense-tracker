@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { useExpenses } from "./hooks/useExpenses";
 import { useExpenseFilters } from "./hooks/useExpenseFilters";
 
@@ -15,9 +15,9 @@ function App() {
     expenses, 
     addExpense, 
     deleteExpense, 
-    updateExpense, 
-    loadSampleExpenses 
+    updateExpense, loadSampleExpenses 
   } = useExpenses();
+  
   const {
     selectedYear,
     setSelectedYear,
@@ -26,6 +26,7 @@ function App() {
     categories,
     filteredExpenses,
   } = useExpenseFilters(expenses);
+  
   const [editingExpense, setEditingExpense] = useState(null);
   
   const handleEdit = useCallback((id) => {
