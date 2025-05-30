@@ -25,7 +25,7 @@ export const useExpenseFormState = (expenseToEdit) => {
       setFormState(defaultFormState);
     }
     titleInputRef.current?.focus();
-  }, [expenseToEdit]);
+  }, [expenseToEdit, defaultFormState]);
 
   const handleInputChange = (field) => (e) => {
     setFormState((prev) => ({
