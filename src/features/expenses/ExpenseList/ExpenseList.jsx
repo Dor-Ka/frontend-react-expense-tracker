@@ -3,16 +3,18 @@ import ExpenseItem from "../ExpenseItem/ExpenseItem";
 
 const ExpenseList = ({ expenses, onEdit, onDelete, selectedYear, selectedCategory }) => {
 
+  const getNoExpensesMessage = (year, category) => {
+    const yearText = year === "All" ? "" : ` in ${year}`;
+    const categoryText = category === "all" ? "" : ` under "${category}" category`;
+    return (yearText || categoryText)
+      ? `No expenses found for selected filters${yearText}${categoryText}.`
+      : "No expenses found.";
+  };
+
   if (expenses.length === 0) {
-    const yearText = selectedYear === "All" ? "" : ` in ${selectedYear}`;
-    const categoryText = selectedCategory === "all" ? "" : ` under "${selectedCategory}" category`;
-    const combinedText = (yearText || categoryText) 
-      ? ` for selected filters${yearText}${categoryText}`
-      : "";
-  
-    return <Message>No expenses found{combinedText}.</Message>;
+    return <Message>{getNoExpensesMessage(selectedYear, selectedCategory)}</Message>;
   }
-  
+
 
   const sortedExpenses = [...expenses].sort((a, b) => new Date(b.date) - new Date(a.date));
 
@@ -25,8 +27,8 @@ const ExpenseList = ({ expenses, onEdit, onDelete, selectedYear, selectedCategor
           title={expense.title}
           amount={expense.amount}
           date={expense.date}
-          category={expense.category} 
-          onEdit={onEdit} 
+          category={expense.category}
+          onEdit={onEdit}
           onDelete={onDelete}
         />
       ))}

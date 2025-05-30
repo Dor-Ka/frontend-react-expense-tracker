@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import sampleExpenses from "../utils/sampleExpenses";
 
 const LOCAL_STORAGE_KEY = "expenses";
 
@@ -12,24 +13,29 @@ export const useExpenses = () => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(expenses));
   }, [expenses]);
 
-  const addExpense = (expense) => {
+  const addExpense = useCallback((expense) => {
     setExpenses((prev) => [expense, ...prev]);
-  };
+  }, []);
 
-  const deleteExpense = (id) => {
+  const deleteExpense = useCallback((id) => {
     setExpenses((prev) => prev.filter((expense) => expense.id !== id));
-  };
+  }, []);
 
-  const updateExpense = (updatedExpense) => {
+  const updateExpense = useCallback((updatedExpense) => {
     setExpenses((prev) =>
       prev.map((exp) => (exp.id === updatedExpense.id ? updatedExpense : exp))
     );
-  };
+  }, []);
 
-  return { 
-    expenses, 
-    addExpense, 
+  const loadSampleExpenses = useCallback(() => {
+    sampleExpenses.forEach((expense) => addExpense({ ...expense, id: crypto.randomUUID() }));
+  }, [addExpense]);
+
+  return {
+    expenses,
+    addExpense,
     deleteExpense,
     updateExpense,
-   };
+    loadSampleExpenses,
+  };
 };

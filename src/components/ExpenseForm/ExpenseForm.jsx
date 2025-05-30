@@ -1,77 +1,46 @@
-import { useState, useEffect, useRef } from "react";
+import { useExpenseFormState } from "../../hooks/useExpenseFormState";
+import { CATEGORY_OPTIONS } from "../../constants/categories";
+
 import { Form, FormGroup } from "./ExpenseFormStyles";
 import { SubmitButton, CancelButton } from "../StyledButton";
 
-const getTodayDate = () => {
-  return new Date().toISOString().split("T")[0];
-};
-
-const categoryOptions = [
-  "Food",
-  "Transport",
-  "Entertainment",
-  "Bills",
-  "Other",
-];
-
 const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit }) => {
-  const [title, setTitle] = useState("");
-  const [amount, setAmount] = useState("");
-  const [date, setDate] = useState(getTodayDate());
-  const [category, setCategory] = useState("Other");
-  const titleInputRef = useRef(null);
+  const {
+    formState,
+    handleInputChange,
+    resetForm,
+    titleInputRef,
+  } = useExpenseFormState(expenseToEdit);
 
-  useEffect(() => {
-    if (expenseToEdit) {
-      setTitle(expenseToEdit.title);
-      setAmount(expenseToEdit.amount.toString());
-      setDate(expenseToEdit.date);
-      setCategory(expenseToEdit.category);
-      titleInputRef.current?.focus();
-    } else {
-      setTitle("");
-      setAmount("");
-      setDate(getTodayDate());
-      setCategory("Other");
-    }
-  }, [expenseToEdit]);
-
-  const submitHandler = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const expenseData = {
       id: expenseToEdit ? expenseToEdit.id : crypto.randomUUID(),
-      title,
-      amount: parseFloat(amount),
-      date,
-      category,
+      title: formState.title,
+      amount: parseFloat(parseFloat(formState.amount).toFixed(2)),
+      date: formState.date,
+      category: formState.category,
     };
 
     if (expenseToEdit) {
       onSaveExpense(expenseData);
     } else {
       onAddExpense(expenseData);
-    }
-
-    if (!expenseToEdit) {
-      setTitle("");
-      setAmount("");
-      setCategory("Other");
-      setDate(getTodayDate());
-      titleInputRef.current?.focus();
+      resetForm();
     }
   };
 
   return (
-    <Form onSubmit={submitHandler}>
+    <Form onSubmit={handleSubmit}>
       <FormGroup>
         <label htmlFor="title">Title</label>
         <input
           ref={titleInputRef}
           id="title"
           type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={formState.title}
+          onChange={handleInputChange("title")}
           required
         />
       </FormGroup>
@@ -81,8 +50,8 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
         <input
           id="amount"
           type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
+          value={formState.amount}
+          onChange={handleInputChange("amount")}
           min="0.01"
           step="0.01"
           required
@@ -94,8 +63,8 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
         <input
           id="date"
           type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
+          value={formState.date}
+          onChange={handleInputChange("date")}
           required
         />
       </FormGroup>
@@ -104,11 +73,11 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
         <label htmlFor="category">Category</label>
         <select
           id="category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
+          value={formState.category}
+          onChange={handleInputChange("category")}
           required
         >
-          {categoryOptions.map((option) => (
+          {CATEGORY_OPTIONS.map((option) => (
             <option key={option} value={option}>
               {option}
             </option>
