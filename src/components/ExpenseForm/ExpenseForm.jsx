@@ -1,17 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { getTodayDate } from "../../utils/date";
+import { CATEGORY_OPTIONS } from "../../constants/categories";
 
 import { Form, FormGroup } from "./ExpenseFormStyles";
 import { SubmitButton, CancelButton } from "../StyledButton";
 
-
-const categoryOptions = [
-  "Food",
-  "Transport",
-  "Entertainment",
-  "Bills",
-  "Other",
-];
 
 const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit }) => {
  
@@ -110,7 +103,7 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
           onChange={(e) => setFormState(prev => ({ ...prev, category: e.target.value }))}
           required
         >
-          {categoryOptions.map((option) => (
+          {CATEGORY_OPTIONS.map((option) => (
             <option key={option} value={option}>
               {option}
             </option>
