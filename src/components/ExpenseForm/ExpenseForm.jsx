@@ -15,25 +15,28 @@ const categoryOptions = [
 ];
 
 const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit }) => {
-  const [title, setTitle] = useState("");
-  const [amount, setAmount] = useState("");
-  const [date, setDate] = useState(getTodayDate());
-  const [category, setCategory] = useState("Other");
+  const defaultFormState = {
+    title: "",
+    amount: "",
+    date: getTodayDate(),
+    category: "Other",
+  };
+
+  const [formState, setFormState] = useState(defaultFormState);
   const titleInputRef = useRef(null);
 
   useEffect(() => {
     if (expenseToEdit) {
-      setTitle(expenseToEdit.title);
-      setAmount(expenseToEdit.amount.toString());
-      setDate(expenseToEdit.date);
-      setCategory(expenseToEdit.category);
-      titleInputRef.current?.focus();
+      setFormState({
+        title: expenseToEdit.title,
+        amount: expenseToEdit.amount.toString(),
+        date: expenseToEdit.date,
+        category: expenseToEdit.category,
+      });
     } else {
-      setTitle("");
-      setAmount("");
-      setDate(getTodayDate());
-      setCategory("Other");
+      setFormState(defaultFormState);
     }
+    titleInputRef.current?.focus();
   }, [expenseToEdit]);
 
   const submitHandler = (e) => {
@@ -41,10 +44,10 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
 
     const expenseData = {
       id: expenseToEdit ? expenseToEdit.id : crypto.randomUUID(),
-      title,
-      amount: parseFloat(amount),
-      date,
-      category,
+      title: formState.title,
+      amount: parseFloat(formState.amount),
+      date: formState.date,
+      category: formState.category,
     };
 
     if (expenseToEdit) {
@@ -54,10 +57,7 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
     }
 
     if (!expenseToEdit) {
-      setTitle("");
-      setAmount("");
-      setCategory("Other");
-      setDate(getTodayDate());
+      setFormState(defaultFormState);
       titleInputRef.current?.focus();
     }
   };
@@ -70,8 +70,8 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
           ref={titleInputRef}
           id="title"
           type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={formState.title}
+          onChange={(e) => setFormState(prev => ({ ...prev, title: e.target.value }))}
           required
         />
       </FormGroup>
@@ -81,8 +81,8 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
         <input
           id="amount"
           type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
+          value={formState.amount}
+          onChange={(e) => setFormState(prev => ({ ...prev, amount: e.target.value }))}
           min="0.01"
           step="0.01"
           required
@@ -94,8 +94,8 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
         <input
           id="date"
           type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
+          value={formState.date}
+          onChange={(e) => setFormState(prev => ({ ...prev, date: e.target.value }))}
           required
         />
       </FormGroup>
@@ -104,8 +104,8 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
         <label htmlFor="category">Category</label>
         <select
           id="category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
+          value={formState.category}
+          onChange={(e) => setFormState(prev => ({ ...prev, category: e.target.value }))}
           required
         >
           {categoryOptions.map((option) => (
