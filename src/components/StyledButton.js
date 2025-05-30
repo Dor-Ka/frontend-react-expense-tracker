@@ -25,6 +25,7 @@ export const SampleButton = styled(BaseButton)`
   @media (max-width: 500px) {
     font-size: 0.9rem;
     padding: 0.4rem 0.75rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
