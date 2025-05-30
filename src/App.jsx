@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from "react";
-import { useExpenses } from "./features/expenses/useExpenses";
+import { useExpenses } from "./hooks/useExpenses";
 import { useExpenseFilters } from "./hooks/useExpenseFilters";
 
 import Header from "./components/Header/Header";
@@ -8,11 +8,16 @@ import Card from "./components/Card/Card";
 import ExpenseList from "./features/expenses/ExpenseList/ExpenseList";
 import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
 import ExpensesFilters from "./features/expenses/ExpensesFilters/ExpensesFilters";
-import sampleExpenses from "./utils/sampleExpenses";
 import { SampleButton } from "./components/StyledButton";
 
 function App() {
-  const { expenses, addExpense, deleteExpense, updateExpense } = useExpenses();
+  const { 
+    expenses, 
+    addExpense, 
+    deleteExpense, 
+    updateExpense, 
+    loadSampleExpenses 
+  } = useExpenses();
   const {
     selectedYear,
     setSelectedYear,
@@ -22,12 +27,6 @@ function App() {
     filteredExpenses,
   } = useExpenseFilters(expenses);
   const [editingExpense, setEditingExpense] = useState(null);
-
-
-
-  const loadSampleExpenses = useCallback(() => {
-    sampleExpenses.forEach((expense) => addExpense({ ...expense, id: crypto.randomUUID() }));
-  }, [addExpense]);
   
   const handleEdit = useCallback((id) => {
     const expense = expenses.find(exp => exp.id === id);

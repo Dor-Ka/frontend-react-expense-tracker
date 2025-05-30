@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import sampleExpenses from "../utils/sampleExpenses";
 
 const LOCAL_STORAGE_KEY = "expenses";
 
@@ -26,10 +27,15 @@ export const useExpenses = () => {
     );
   }, []);
 
-  return { 
-    expenses, 
-    addExpense, 
+  const loadSampleExpenses = useCallback(() => {
+    sampleExpenses.forEach((expense) => addExpense({ ...expense, id: crypto.randomUUID() }));
+  }, [addExpense]);
+
+  return {
+    expenses,
+    addExpense,
     deleteExpense,
     updateExpense,
+    loadSampleExpenses,
   };
 };
