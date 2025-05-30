@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 
 export const useExpenseFilters = (expenses) => {
-  const [selectedYear, setSelectedYear] = useState("All");
+  const [selectedYear, setSelectedYear] = useState("all");
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const categories = useMemo(() => {
@@ -11,7 +11,7 @@ export const useExpenseFilters = (expenses) => {
   const filteredExpenses = useMemo(() => {
     return expenses.filter((expense) => {
       const year = new Date(expense.date).getFullYear().toString();
-      const matchesYear = selectedYear === "All" || year === selectedYear;
+      const matchesYear = selectedYear === "all" || year === selectedYear;
       const matchesCategory = selectedCategory === "all" || expense.category === selectedCategory;
       return matchesYear && matchesCategory;
     });
