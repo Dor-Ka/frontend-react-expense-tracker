@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { getTodayDate } from "../utils/date";
 
 export const useExpenseFormState = (expenseToEdit) => {
@@ -27,12 +27,15 @@ export const useExpenseFormState = (expenseToEdit) => {
     titleInputRef.current?.focus();
   }, [expenseToEdit, defaultFormState]);
 
-  const handleInputChange = (field) => (e) => {
-    setFormState((prev) => ({
-      ...prev,
-      [field]: e.target.value,
-    }));
-  };
+ const handleInputChange = useCallback(
+    (field) => (e) => {
+      setFormState((prev) => ({
+        ...prev,
+        [field]: e.target.value,
+      }));
+    },
+    []
+  );
 
   const resetForm = () => {
     setFormState(defaultFormState);
