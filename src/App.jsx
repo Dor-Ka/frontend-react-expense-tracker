@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useExpenses } from "./features/expenses/useExpenses";
 
 import Header from "./components/Header/Header";
@@ -29,21 +29,21 @@ function App() {
     });
   }, [expenses, selectedYear, selectedCategory]);
 
-  const loadSampleExpenses = () => {
+  const loadSampleExpenses = useCallback(() => {
     sampleExpenses.forEach((expense) => addExpense({ ...expense, id: crypto.randomUUID() }));
-  };
-
-  const handleEdit = (id) => {
+  }, [addExpense]);
+  
+  const handleEdit = useCallback((id) => {
     const expense = expenses.find(exp => exp.id === id);
     if (expense) {
       setEditingExpense(expense);
     }
-  };
-
-  const handleSave = (updatedExpense) => {
+  }, [expenses]);
+  
+  const handleSave = useCallback((updatedExpense) => {
     updateExpense(updatedExpense);
     setEditingExpense(null);
-  };
+  }, [updateExpense]);
 
   return (
     <>
