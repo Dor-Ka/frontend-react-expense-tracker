@@ -15,7 +15,7 @@ const ExpenseItem = ({ id, title, amount, date, category, onDelete, onEdit }) =>
         <span>{formatDate(date)}</span>
         <CategoryTag>{category}</CategoryTag>
       </LeftColumn>
-      <RightColumn>${amount.toFixed(2)}</RightColumn>
+      <RightColumn>${Number(amount).toFixed(2)}</RightColumn>
       <IconButton onClick={handleEdit} aria-label="Edit expense">
         <EditIcon />
       </IconButton>
