@@ -1,15 +1,15 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { getTodayDate } from "../utils/date";
 
 export const useExpenseFormState = (expenseToEdit) => {
   const titleInputRef = useRef(null);
 
-  const defaultFormState = {
+  const defaultFormState = useMemo(() => ({
     title: "",
     amount: "",
     date: getTodayDate(),
     category: "Other",
-  };
+  }), []);
 
   const [formState, setFormState] = useState(defaultFormState);
 
