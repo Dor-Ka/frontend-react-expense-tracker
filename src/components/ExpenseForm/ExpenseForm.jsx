@@ -1,46 +1,24 @@
-import { useState, useEffect, useRef } from "react";
-import { getTodayDate } from "../../utils/date";
+import { useExpenseFormState } from "../../hooks/useExpenseFormState";
 import { CATEGORY_OPTIONS } from "../../constants/categories";
 
 import { Form, FormGroup } from "./ExpenseFormStyles";
 import { SubmitButton, CancelButton } from "../StyledButton";
 
-
 const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit }) => {
- 
-  const todayDate = getTodayDate();
+  const {
+    formState,
+    handleInputChange,
+    resetForm,
+    titleInputRef,
+  } = useExpenseFormState(expenseToEdit);
 
-  const defaultFormState = {
-    title: "",
-    amount: "",
-    date: todayDate, 
-    category: "Other",
-  };
-
-  const [formState, setFormState] = useState(defaultFormState);
-  const titleInputRef = useRef(null);
-
-  useEffect(() => {
-    if (expenseToEdit) {
-      setFormState({
-        title: expenseToEdit.title,
-        amount: expenseToEdit.amount.toString(),
-        date: expenseToEdit.date,
-        category: expenseToEdit.category,
-      });
-    } else {
-      setFormState(defaultFormState);
-    }
-    titleInputRef.current?.focus();
-  }, [expenseToEdit]);
-
-  const submitHandler = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const expenseData = {
       id: expenseToEdit ? expenseToEdit.id : crypto.randomUUID(),
       title: formState.title,
-      amount: parseFloat(formState.amount),
+      amount: parseFloat(parseFloat(formState.amount).toFixed(2)),
       date: formState.date,
       category: formState.category,
     };
@@ -49,16 +27,12 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
       onSaveExpense(expenseData);
     } else {
       onAddExpense(expenseData);
-    }
-
-    if (!expenseToEdit) {
-      setFormState(defaultFormState);
-      titleInputRef.current?.focus();
+      resetForm();
     }
   };
 
   return (
-    <Form onSubmit={submitHandler}>
+    <Form onSubmit={handleSubmit}>
       <FormGroup>
         <label htmlFor="title">Title</label>
         <input
@@ -66,7 +40,7 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
           id="title"
           type="text"
           value={formState.title}
-          onChange={(e) => setFormState(prev => ({ ...prev, title: e.target.value }))}
+          onChange={handleInputChange("title")}
           required
         />
       </FormGroup>
@@ -77,7 +51,7 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
           id="amount"
           type="number"
           value={formState.amount}
-          onChange={(e) => setFormState(prev => ({ ...prev, amount: e.target.value }))}
+          onChange={handleInputChange("amount")}
           min="0.01"
           step="0.01"
           required
@@ -90,7 +64,7 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
           id="date"
           type="date"
           value={formState.date}
-          onChange={(e) => setFormState(prev => ({ ...prev, date: e.target.value }))}
+          onChange={handleInputChange("date")}
           required
         />
       </FormGroup>
@@ -100,7 +74,7 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
         <select
           id="category"
           value={formState.category}
-          onChange={(e) => setFormState(prev => ({ ...prev, category: e.target.value }))}
+          onChange={handleInputChange("category")}
           required
         >
           {CATEGORY_OPTIONS.map((option) => (
