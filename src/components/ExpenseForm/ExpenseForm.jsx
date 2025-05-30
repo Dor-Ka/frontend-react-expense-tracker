@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Form, FormGroup } from "./ExpenseFormStyles";
-import { SubmitButton } from "../StyledButton";
+import { SubmitButton, CancelButton } from "../StyledButton";
 
 const getTodayDate = () => {
   return new Date().toISOString().split("T")[0];
@@ -121,9 +121,9 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
       </SubmitButton>
 
       {expenseToEdit && (
-        <SubmitButton type="button" onClick={onCancelEdit} style={{ marginLeft: "10px", backgroundColor: "#ccc", color: "#000" }}>
+        <CancelButton type="button" onClick={onCancelEdit}>
           Cancel
-        </SubmitButton>
+        </CancelButton>
       )}
     </Form>
   );
