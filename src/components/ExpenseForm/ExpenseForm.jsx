@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { getTodayDate } from "../../utils/date";
+
 import { Form, FormGroup } from "./ExpenseFormStyles";
 import { SubmitButton, CancelButton } from "../StyledButton";
 
@@ -13,7 +15,7 @@ const categoryOptions = [
 
 const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit }) => {
  
-  const todayDate = new Date().toISOString().split("T")[0];
+  const todayDate = getTodayDate();
 
   const defaultFormState = {
     title: "",
