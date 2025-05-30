@@ -37,10 +37,10 @@ export const useExpenseFormState = (expenseToEdit) => {
     []
   );
 
-  const resetForm = () => {
+  const resetForm = useCallback(() => {
     setFormState(defaultFormState);
     titleInputRef.current?.focus();
-  };
+  }, [defaultFormState]);
 
   return {
     formState,
