@@ -33,6 +33,16 @@ export const SubmitButton = styled(BaseButton)`
   font-size: 1rem;
 `;
 
+export const CancelButton = styled(SubmitButton)`
+  background-color: ${({ theme }) => theme.colors.cancel};
+  color: ${({ theme }) => theme.colors.text};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.cancelDark};
+  }
+`;
+
+
 export const IconButton = styled.button`
   background: none;
   border: none;
