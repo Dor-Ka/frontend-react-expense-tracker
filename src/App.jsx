@@ -20,12 +20,14 @@ function App() {
     return [...new Set(expenses.map(exp => exp.category))];
   }, [expenses]);
 
-  const filteredExpenses = expenses.filter((expense) => {
-    const year = new Date(expense.date).getFullYear().toString();
-    const matchesYear = selectedYear === "All" || year === selectedYear;
-    const matchesCategory = selectedCategory === "all" || expense.category === selectedCategory;
-    return matchesYear && matchesCategory;
-  });
+  const filteredExpenses = useMemo(() => {
+    return expenses.filter((expense) => {
+      const year = new Date(expense.date).getFullYear().toString();
+      const matchesYear = selectedYear === "All" || year === selectedYear;
+      const matchesCategory = selectedCategory === "all" || expense.category === selectedCategory;
+      return matchesYear && matchesCategory;
+    });
+  }, [expenses, selectedYear, selectedCategory]);
 
   const loadSampleExpenses = () => {
     sampleExpenses.forEach((expense) => addExpense({ ...expense, id: crypto.randomUUID() }));
