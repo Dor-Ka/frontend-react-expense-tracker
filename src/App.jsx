@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useExpenses } from "./features/expenses/useExpenses";
 
 import Header from "./components/Header/Header";
@@ -16,7 +16,9 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [editingExpense, setEditingExpense] = useState(null);
 
-  const categories = [...new Set(expenses.map(exp => exp.category))];
+  const categories = useMemo(() => {
+    return [...new Set(expenses.map(exp => exp.category))];
+  }, [expenses]);
 
   const filteredExpenses = expenses.filter((expense) => {
     const year = new Date(expense.date).getFullYear().toString();
