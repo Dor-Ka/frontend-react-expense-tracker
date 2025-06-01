@@ -9,6 +9,8 @@ export const useExpenses = () => {
     return stored ? JSON.parse(stored) : [];
   });
 
+  const [hasLoadedSample, setHasLoadedSample] = useState(false);
+
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(expenses));
   }, [expenses]);
@@ -28,8 +30,12 @@ export const useExpenses = () => {
   }, []);
 
   const loadSampleExpenses = useCallback(() => {
-    sampleExpenses.forEach((expense) => addExpense({ ...expense, id: crypto.randomUUID() }));
-  }, [addExpense]);
+    if (hasLoadedSample) return;
+    sampleExpenses.forEach((expense) =>
+      addExpense({ ...expense, id: crypto.randomUUID() })
+    );
+    setHasLoadedSample(true);
+  }, [addExpense, hasLoadedSample]);
 
   return {
     expenses,
@@ -37,5 +43,6 @@ export const useExpenses = () => {
     deleteExpense,
     updateExpense,
     loadSampleExpenses,
+    hasLoadedSample,
   };
 };

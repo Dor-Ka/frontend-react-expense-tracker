@@ -15,7 +15,9 @@ function App() {
     expenses, 
     addExpense, 
     deleteExpense, 
-    updateExpense, loadSampleExpenses 
+    updateExpense, 
+    loadSampleExpenses,
+    hasLoadedSample, 
   } = useExpenses();
   
   const {
@@ -54,7 +56,7 @@ function App() {
           />
         </Card>
 
-        <SampleButton onClick={loadSampleExpenses}>Load Sample Expenses</SampleButton>
+        <SampleButton onClick={loadSampleExpenses} disabled={hasLoadedSample}>Load Sample Expenses</SampleButton>
 
         <ExpensesFilters
           expenses={expenses}
