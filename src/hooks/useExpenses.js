@@ -12,6 +12,13 @@ export const useExpenses = () => {
   const [hasLoadedSample, setHasLoadedSample] = useState(false);
 
   useEffect(() => {
+    if (expenses.length === 0) {
+      setHasLoadedSample(false);
+    }
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(expenses));
+  }, [expenses]);
+
+  useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(expenses));
   }, [expenses]);
 
