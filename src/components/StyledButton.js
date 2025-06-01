@@ -22,6 +22,11 @@ export const SampleButton = styled(BaseButton)`
   padding: 0.5rem 1rem;
   font-size: 1rem;
 
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
   @media (max-width: 500px) {
     font-size: 0.9rem;
     padding: 0.4rem 0.75rem;
