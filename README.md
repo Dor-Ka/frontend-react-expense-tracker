@@ -6,7 +6,7 @@ A simple, clean and expandable Expense Tracker built with React and Styled Compo
 
 ## 🚀 Live Demo
 
-👉 [Soon on GitHub Pages]
+👉 View the project: [Expense Tracker (React)](https://dor-ka.github.io/frontend-react-expense-tracker/)
 
 ---
 
@@ -19,30 +19,6 @@ A simple, clean and expandable Expense Tracker built with React and Styled Compo
 - Coming soon: TypeScript, React Router, LocalStorage, Charts
 
 ---
-
-<!-- ## 📁 Project Structure
-
-src/
-├── components/
-│   ├── Card/
-│   ├── Container/
-│   ├── Header/
-│   └── ExpenseForm/
-├── features/
-│   └── expenses/
-│       ├── ExpenseItem/
-│       ├── ExpenseList/
-│       ├── ExpensesFilter/
-│       │   ├── ExpensesFilter.jsx
-│       │   └── ExpensesFilterStyles.jsx
-│       └── useExpenses.js
-├── styles/
-│   ├── GlobalStyle.js
-│   └── theme.js
-├── utils/
-├── App.jsx
-├── main.jsx -->
-
 
 ## 📦 Versions
 
