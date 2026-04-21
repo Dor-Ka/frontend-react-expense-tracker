@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { getTodayDate } from "../utils/date";
-import { categorizeByTitle } from "../utils/categoryClassifier";
+import { autoCategorize } from "../utils/autoCategorize";
 
 export const useExpenseFormState = (expenseToEdit) => {
   const titleInputRef = useRef(null);
-  const categoryManuallyChanged = useRef(false);
+  const isCategoryManuallySet = useRef(false);
 
   const defaultFormState = useMemo(() => ({
     title: "",
@@ -23,10 +23,10 @@ export const useExpenseFormState = (expenseToEdit) => {
         date: expenseToEdit.date,
         category: expenseToEdit.category,
       });
-      categoryManuallyChanged.current = true;
+      isCategoryManuallySet.current = true;
     } else {
       setFormState(defaultFormState);
-      categoryManuallyChanged.current = false;
+      isCategoryManuallySet.current = false;
     }
     titleInputRef.current?.focus();
   }, [expenseToEdit, defaultFormState]);
@@ -34,27 +34,19 @@ export const useExpenseFormState = (expenseToEdit) => {
   const handleInputChange = useCallback(
     (field) => (e) => {
       const value = e.target.value;
-
-      if (field === "title") {
-        const suggestedCategory = categorizeByTitle(value);
-
-        if (!categoryManuallyChanged.current || suggestedCategory !== "Other") {
-          setFormState((prev) => ({
-            ...prev,
-            title: value,
-            category: suggestedCategory !== "Other" ? suggestedCategory : prev.category,
-          }));
-        } else {
-          setFormState((prev) => ({
-            ...prev,
-            title: value,
-          }));
-        }
-      } else if (field === "category") {
-        categoryManuallyChanged.current = true;
+      
+      if (field === "title" && !isCategoryManuallySet.current) {
+        const autoCategory = autoCategorize(value);
         setFormState((prev) => ({
           ...prev,
-          category: value,
+          title: value,
+          category: autoCategory,
+        }));
+      } else if (field === "category") {
+        isCategoryManuallySet.current = true;
+        setFormState((prev) => ({
+          ...prev,
+          [field]: value,
         }));
       } else {
         setFormState((prev) => ({
@@ -68,7 +60,7 @@ export const useExpenseFormState = (expenseToEdit) => {
 
   const resetForm = useCallback(() => {
     setFormState(defaultFormState);
-    categoryManuallyChanged.current = false;
+    isCategoryManuallySet.current = false;
     titleInputRef.current?.focus();
   }, [defaultFormState]);
 
