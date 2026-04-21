@@ -9,6 +9,7 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
     formState,
     handleInputChange,
     resetForm,
+    learnUserChoice,
     titleInputRef,
   } = useExpenseFormState(expenseToEdit);
 
@@ -22,6 +23,8 @@ const ExpenseForm = ({ onAddExpense, expenseToEdit, onSaveExpense, onCancelEdit 
       date: formState.date,
       category: formState.category,
     };
+
+    learnUserChoice();
 
     if (expenseToEdit) {
       onSaveExpense(expenseData);
