@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { getTodayDate } from "../utils/date";
+import { autoCategorize } from "../utils/autoCategorize";
 
 export const useExpenseFormState = (expenseToEdit) => {
   const titleInputRef = useRef(null);
+  const isCategoryManuallySet = useRef(false);
 
   const defaultFormState = useMemo(() => ({
     title: "",
@@ -21,24 +23,44 @@ export const useExpenseFormState = (expenseToEdit) => {
         date: expenseToEdit.date,
         category: expenseToEdit.category,
       });
+      isCategoryManuallySet.current = true;
     } else {
       setFormState(defaultFormState);
+      isCategoryManuallySet.current = false;
     }
     titleInputRef.current?.focus();
   }, [expenseToEdit, defaultFormState]);
 
- const handleInputChange = useCallback(
+  const handleInputChange = useCallback(
     (field) => (e) => {
-      setFormState((prev) => ({
-        ...prev,
-        [field]: e.target.value,
-      }));
+      const value = e.target.value;
+      
+      if (field === "title" && !isCategoryManuallySet.current) {
+        const autoCategory = autoCategorize(value);
+        setFormState((prev) => ({
+          ...prev,
+          title: value,
+          category: autoCategory,
+        }));
+      } else if (field === "category") {
+        isCategoryManuallySet.current = true;
+        setFormState((prev) => ({
+          ...prev,
+          [field]: value,
+        }));
+      } else {
+        setFormState((prev) => ({
+          ...prev,
+          [field]: value,
+        }));
+      }
     },
     []
   );
 
   const resetForm = useCallback(() => {
     setFormState(defaultFormState);
+    isCategoryManuallySet.current = false;
     titleInputRef.current?.focus();
   }, [defaultFormState]);
 
