@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { getTodayDate } from "../utils/date";
-import { autoCategorize } from "../utils/autoCategorize";
+import { smartCategorize, learnCategory } from "../utils/smartCategorizer";
 
 export const useExpenseFormState = (expenseToEdit) => {
   const titleInputRef = useRef(null);
   const isCategoryManuallySet = useRef(false);
+  const originalAutoCategory = useRef(null);
 
   const defaultFormState = useMemo(() => ({
     title: "",
@@ -24,9 +25,11 @@ export const useExpenseFormState = (expenseToEdit) => {
         category: expenseToEdit.category,
       });
       isCategoryManuallySet.current = true;
+      originalAutoCategory.current = null;
     } else {
       setFormState(defaultFormState);
       isCategoryManuallySet.current = false;
+      originalAutoCategory.current = null;
     }
     titleInputRef.current?.focus();
   }, [expenseToEdit, defaultFormState]);
@@ -36,7 +39,8 @@ export const useExpenseFormState = (expenseToEdit) => {
       const value = e.target.value;
       
       if (field === "title" && !isCategoryManuallySet.current) {
-        const autoCategory = autoCategorize(value);
+        const autoCategory = smartCategorize(value);
+        originalAutoCategory.current = autoCategory;
         setFormState((prev) => ({
           ...prev,
           title: value,
@@ -58,9 +62,19 @@ export const useExpenseFormState = (expenseToEdit) => {
     []
   );
 
+  const learnUserChoice = useCallback(() => {
+    if (formState.title && formState.category) {
+      if (isCategoryManuallySet.current && 
+          formState.category !== originalAutoCategory.current) {
+        learnCategory(formState.title, formState.category);
+      }
+    }
+  }, [formState]);
+
   const resetForm = useCallback(() => {
     setFormState(defaultFormState);
     isCategoryManuallySet.current = false;
+    originalAutoCategory.current = null;
     titleInputRef.current?.focus();
   }, [defaultFormState]);
 
@@ -69,6 +83,7 @@ export const useExpenseFormState = (expenseToEdit) => {
     setFormState,
     handleInputChange,
     resetForm,
+    learnUserChoice,
     titleInputRef,
   };
 };
